@@ -3,12 +3,16 @@ import { getProductById } from '@/data/mockData';
 import PlaceholderImage from '@/components/PlaceholderImage';
 import Link from 'next/link';
 
-export default function ProductPage({ 
-  params 
-}: { 
-  params: { id: string } 
-}) {
-  const product = getProductById(params.id);
+type Props = {
+  params: Promise<{
+    id: string;
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export default async function ProductPage({ params }: Props) {
+  const resolvedParams = await params;
+  const product = getProductById(resolvedParams.id);
 
   if (!product) {
     return (
