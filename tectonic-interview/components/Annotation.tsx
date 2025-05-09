@@ -23,10 +23,12 @@ const Annotation: React.FC<AnnotationProps> = ({
     setShowProductCard(!showProductCard);
   };
 
-  // Calculate position based on percentages
+  // Calculate position based on percentages and container dimensions
   const positionStyle = {
     left: `${annotation.x}%`,
     top: `${annotation.y}%`,
+    // Use container dimensions to calculate any size-dependent values
+    transform: containerWidth > 768 ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0.8)',
   };
 
   return (
@@ -46,11 +48,15 @@ const Annotation: React.FC<AnnotationProps> = ({
       {/* Product card */}
       {showProductCard && (
         <div className="absolute z-20" style={{
-          // Position the card based on where the annotation is
+          // Position the card based on where the annotation is and container dimensions
           // If annotation is on the right side, show card to the left
           // If annotation is on the bottom, show card above
-          left: annotation.x > 50 ? '-240px' : '20px',
-          top: annotation.y > 50 ? '-120px' : '20px',
+          left: annotation.x > 50 ? 
+            `-${Math.min(240, containerWidth * 0.6)}px` : 
+            `${Math.min(20, containerWidth * 0.05)}px`,
+          top: annotation.y > 50 ? 
+            `-${Math.min(120, containerHeight * 0.3)}px` : 
+            `${Math.min(20, containerHeight * 0.05)}px`,
         }}>
           <ProductCard 
             product={product} 

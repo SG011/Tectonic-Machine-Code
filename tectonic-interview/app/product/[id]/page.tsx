@@ -3,20 +3,18 @@ import { getProductById } from '@/data/mockData';
 import PlaceholderImage from '@/components/PlaceholderImage';
 import Link from 'next/link';
 
-interface ProductPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function ProductPage({ params }: ProductPageProps) {
+export default function ProductPage({ 
+  params 
+}: { 
+  params: { id: string } 
+}) {
   const product = getProductById(params.id);
 
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
         <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-        <p className="mb-6">The product you're looking for doesn't exist.</p>
+        <p className="mb-6">The product you&apos;re looking for doesn&apos;t exist.</p>
         <Link 
           href="/"
           className="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors"
