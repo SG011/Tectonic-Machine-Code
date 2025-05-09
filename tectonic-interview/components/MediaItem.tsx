@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Media, Product } from '@/types';
+import { Media } from '@/types';
 import PlaceholderImage from './PlaceholderImage';
 import PlaceholderVideo from './PlaceholderVideo';
 import Annotation from './Annotation';

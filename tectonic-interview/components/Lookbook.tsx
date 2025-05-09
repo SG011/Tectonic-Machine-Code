@@ -84,7 +84,7 @@ const Lookbook: React.FC<LookbookProps> = ({ looks }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [currentLookIndex]);
+  }, [currentLookIndex, handleNextLook, handlePreviousLook]);
 
   return (
     <div 
